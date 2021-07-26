@@ -1,0 +1,48 @@
+{% extends 'blogs/base.html' %}
+
+{% block content %}
+
+<section class="latest-project-area pb-70">
+<div class="container">
+<div class="section-title text-center">
+<h2>آخرین مقالات</h2>
+</div>
+<div class="row">
+{%for i in mylist%}
+    <div class="col-lg-4 col-md-6">
+<div class="single-featured">
+<a href="post-style-one.html">
+<img src="http://localhost:8000/static/blogs/assets/img/home-two/main-blog-img/1.jpg" alt="Image">
+</a>
+<div class="featured-content">
+<ul>
+<li>
+
+</li>
+<li>
+<i class="bx bx-calendar"></i>
+{{ i.created }}
+</li>
+</ul>
+<a href="post-style-one.html">
+<h3>{{  i.title }}</h3>
+</a>
+<p>{{i.description|safe|truncatechars:100}}</p> <br>
+        {% for i_category in i.category.all %}
+        <td> {{ i_category.name }} </td>
+    {% endfor %}
+<a href="post-style-one.html" class="read-more">ادامه خواندن</a>
+</div>
+</div>
+</div>
+
+
+{% endfor%}
+    </div>
+</div>
+</section>
+{% endblock %}
+
+<a href="{% url 'viewarticle' article.id %}">
+        {{  article.title }}
+        </a>

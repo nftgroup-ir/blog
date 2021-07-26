@@ -1,0 +1,40 @@
+{% extends 'blogs/base.html' %}
+
+
+{% block content %}
+
+Current Articles
+
+<h2>Fatemeh has written {{articles.count}} article {{ articles.countpluralize }}</h2>
+
+{% for article in articles %}
+<li>
+        <a href="{% url 'viewarticle' article.id %}">
+        {{  article.title }}
+        </a>
+        <br>
+        {{ article.description|safe|truncatechars:100 }}
+        <br>
+        Time : {{ article.created }}
+        <br>
+        <img src="{{ Article.image.url }}" height="400">
+        <br>
+        updated : {{ article.updated }}
+        <br>
+        Writer : {{ article.user }}
+        <br>categories :
+
+                {% for article_category in article.category.all %}
+                       <td> {{ article_category.name }} </td>
+                {% endfor %}
+
+        <br>
+        <br>
+
+
+
+</li>
+{% endfor %}
+
+{% endblock %}
+

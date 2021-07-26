@@ -1,0 +1,15 @@
+{% extends 'blogs/base.html' %}
+
+
+{% block content %}
+create Article
+
+{{ error }}
+
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+{{ form.as_p }}
+<button type="submit">Create</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'blogs/base.html' %}
+
+
+{% block content %}
+
+
+
+<div class="page-title-area bg-9">
+<div class="container">
+<div class="page-title-content">
+<h2>تماس با ما</h2>
+<ul>
+<li>
+<a href="{% url 'home' %}">
+خانه
+</a>
+</li>
+<li>تماس با ما</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<section class="contact-info-area pt-100 pb-70">
+<div class="container">
+<div class="row">
+<div class="col-lg-3 col-sm-6">
+<div class="single-contact-info">
+<i class="bx bx-envelope"></i>
+<h3>ایمیل ما:</h3>
+<a href="mailto: hello@linka.com">hello@linka.com</a>
+<a href="mailto: hello@linka.com">hello@linka.com</a>
+</div>
+</div>
+<div class="col-lg-3 col-sm-6">
+<div class="single-contact-info">
+<i class="bx bx-phone-call"></i>
+<h3>تماس با ما:</h3>
+<a href="tel:+(123)1800-567-8990">تلفن. 02112345678</a>
+<a href="tel:+(124)1523-567-9874">تلفن. 02112345678</a>
+</div>
+</div>
+<div class="col-lg-3 col-sm-6">
+<div class="single-contact-info">
+<i class="bx bx-location-plus"></i>
+<h3>تهران</h3>
+<a href="#">ایران ، استان تهران ، میدان آزادی ، خیابان 9 غربی</a>
+</div>
+</div>
+<div class="col-lg-3 col-sm-6">
+<div class="single-contact-info">
+<i class="bx bx-support"></i>
+<h3>چت زنده</h3>
+<a href="#">تمام وقت با شرکت ما بصورت 24 ساعته و روزانه چت کنید</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<section class="main-contact-area pb-100">
+<div class="container">
+<div class="row">
+<div class="col-12">
+<div class="contact-wrap contact-pages mb-0">
+<div class="contact-form">
+<div class="section-title">
+<h2>برای هرگونه سوال پیامی برای ما ارسال کنید</h2>
+</div>
+<form id="contactForm">
+<div class="row">
+<div class="col-lg-6 col-sm-6">
+<div class="form-group">
+<input type="text" name="name" id="name" class="form-control" required data-error="لطفا نام خود را وارد کنید" placeholder="نام شما">
+<div class="help-block with-errors"></div>
+</div>
+</div>
+<div class="col-lg-6 col-sm-6">
+<div class="form-group">
+<input type="email" name="email" id="email" class="form-control" required data-error="لطفا ایمیل خود را وارد کنید" placeholder="ایمیل شما">
+<div class="help-block with-errors"></div>
+</div>
+</div>
+<div class="col-lg-6 col-sm-6">
+<div class="form-group">
+<input type="text" name="phone_number" id="phone_number" required data-error="لطفا تلفن خود را وارد کنید" class="form-control" placeholder="تلفن شما">
+<div class="help-block with-errors"></div>
+</div>
+</div>
+<div class="col-lg-6 col-sm-6">
+<div class="form-group">
+<input type="text" name="msg_subject" id="msg_subject" class="form-control" required data-error="لطفا موضوع خود را وارد کنید" placeholder="موضوع شما">
+<div class="help-block with-errors"></div>
+</div>
+</div>
+<div class="col-lg-12 col-md-12">
+<div class="form-group">
+<textarea name="message" class="form-control" id="message" cols="30" rows="5" required data-error="پیام خود را بنویسید" placeholder="پیام شما"></textarea>
+<div class="help-block with-errors"></div>
+</div>
+</div>
+<div class="col-lg-12 col-md-12">
+<button type="submit" class="default-btn btn-two">
+ارسال پیام
+</button>
+<div id="msgSubmit" class="h3 text-center hidden"></div>
+<div class="clearfix"></div>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+{% endblock %}

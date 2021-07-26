@@ -1,0 +1,20 @@
+{% extends 'blogs/base.html' %}
+
+
+{% block content %}
+Categories:
+<br>
+<br>
+
+{% for category in categories %}
+<li>
+<a href="{% url 'categoryarticles' category.name %}">
+    {{ category }}
+    </a>
+    <br>
+</li>
+{% endfor %}
+
+
+{% endblock %}
+

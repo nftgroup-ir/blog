@@ -1,0 +1,54 @@
+{% extends 'blogs/base.html' %}
+
+{% block content %}
+
+<section class="latest-project-area pb-70">
+<div class="container">
+<div class="section-title text-center">
+<h2>آخرین مقالات</h2>
+</div>
+<div class="row">
+{%for i in mylist%}
+    <div class="col-lg-4 col-md-6">
+<div class="single-featured">
+<a href="{% url 'viewarticle' i.id %}">
+<img src="http://localhost:8000/media/{{i.image}}" alt="Image">
+</a>
+<div class="featured-content">
+<ul>
+<li>
+
+</li>
+<li>
+
+</ul>
+<a href="{% url 'viewarticle' i.id %}">
+<h3>{{  i.title }}</h3>
+</a>
+<p>{{i.description|safe|truncatechars:100}}</p> <br>
+    <p>
+        {% for i_category in i.category.all %}
+        <td> <a href="http://localhost:8000/categories/{{ i_category.name }}">{{ i_category.name }}</a>  </td>
+    {% endfor %}
+    </p>
+
+<a href="{% url 'viewarticle' i.id %}" class="read-more">ادامه خواندن</a>
+</div>
+</div>
+</div>
+
+
+{% endfor%}
+    </div>
+</div>
+</section>
+{% endblock %}
+
+
+
+
+
+
+
+
+
