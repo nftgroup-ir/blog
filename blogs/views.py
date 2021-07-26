@@ -142,7 +142,7 @@ def categoryarticles(request,category_name):
             for cat in article.category.all():
                 if category_name == cat.name:
                     mylist.append(article)
-        return render(request, 'blogs/categoryarticles.html', {'articles':articles, 'mylist' : mylist })
+        return render(request, 'blogs/categoryarticles.html', {'articles':articles, 'mylist' : mylist , 'a':'مطلبی وجود ندارد' })
 
 def viewcategory_article(request, article_pk):     #SEE FULL ARTICLE OF A CATEGORY
     article = get_object_or_404(Article, pk=article_pk)

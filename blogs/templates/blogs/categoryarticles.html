@@ -8,7 +8,8 @@
 <h2>آخرین مقالات</h2>
 </div>
 <div class="row">
-{%for i in mylist%}
+    {% if mylist %}
+    {%for i in mylist%}
     <div class="col-lg-4 col-md-6">
 <div class="single-featured">
 <a href="{% url 'viewarticle' i.id %}">
@@ -38,7 +39,12 @@
 </div>
 
 
-{% endfor%}
+    {% endfor%}
+    {% elif mylist|length == 0%}
+    <h1>مطلبی وجود ندارد</h1>
+    {%endif%}
+
+
     </div>
 </div>
 </section>
