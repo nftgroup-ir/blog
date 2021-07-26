@@ -24,7 +24,7 @@ def home(request):
         if x<=3:
             listof_articles.append(article)
             x+=1
-    return render(request, 'blogs/home.html', {'listof_articles':listof_articles})
+    return render(request, 'blogs/home.html', {'listof_articles':listof_articles, 'article':article})
 
 def aboutus(request):
     return render(request, 'blogs/aboutus.html')
