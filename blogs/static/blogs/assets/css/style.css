@@ -651,7 +651,7 @@ left: 0;
 	content: "";
 	position: absolute;
 	top: 0;
-right: 0;
+	right: 0;
 	width: 100%;
 	height: 100%;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(0, 0, 0, 0.9)));
@@ -660,7 +660,7 @@ right: 0;
 .single-main-blog-item .blog-link {
 	position: absolute;
 	top: 30px;
-right: 0;
+	right: 0;
 	width: 150px;
 	background-color: #fff;
 	font-size: 15px;
@@ -676,7 +676,7 @@ right: 0;
 	padding: 30px;
 	position: absolute;
 	bottom: 0;
-right: 0
+	right: 0
 }
 .single-main-blog-item .main-blog-content a h3 {
 	color: #fff;
@@ -1456,6 +1456,9 @@ right: 0;
 	background-position: center center;
 	background-size: cover;
 	background-repeat: no-repeat
+}
+.single-main-blog-item-two img	{
+	background-size: cover;
 }
 .single-main-blog-item-two.middle .main-blog-content {
 	padding: 20px
