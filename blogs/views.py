@@ -12,8 +12,8 @@ from .models import Category
 
 
 
-def categories():
-    return Category.objects.all()
+def categoriesBase(request):
+    return {'categories' : Category.objects.all()}
 
 
 def home(request):

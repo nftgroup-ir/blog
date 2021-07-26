@@ -66,24 +66,14 @@
 <i class="bx bx-chevron-down"></i>
 </a>
 <ul class="dropdown-menu">
-<!--{% for category in categories %}-->
-<!--<li class="nav-item">-->
-<!--<a href="{% url 'categoryarticles' category.name %}" class="nav-link">-->
-
-<!--</a>-->
-
-<!--</li>-->
-<!--    {%endfor%}-->
+{% for category in categories %}
 <li class="nav-item">
-<a href="#" class="nav-link">
-دوره ها
+<a href="{% url 'categoryarticles' category.name %}" class="nav-link">
+{{category.name}}
 </a>
 
 </li>
-<li class="nav-item">
-<a href="#" class="nav-link">
-معرفی ابزار ها
-</a>
+    {%endfor%}
 
 </li>
 </ul>
