@@ -714,7 +714,10 @@ margin-left: 5px;
 }
 .single-featured {
 	-webkit-transition: all .5s;
-	transition: all .5s
+	transition: all ;
+	text-align: center;
+	margin: auto;
+	
 }
 .single-featured .blog-img {
 	position: relative
