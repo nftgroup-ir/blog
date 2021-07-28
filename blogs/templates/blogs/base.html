@@ -224,13 +224,13 @@ Logged In as {{ user.username }}
 <h3>فهرست</h3>
 <ul>
 <li>
-<a href="author.html">
-<i class="bx bx-chevrons-left"></i>
-آموزش
-</a>
+<!--<a href="{% url 'viewcategories' %}">-->
+<!--<i class="bx bx-chevrons-left"></i>-->
+<!--آموزش-->
+<!--</a>-->
 </li>
 <li>
-<a href="gallery.html">
+<a href="{% url 'currentarticles' %}">
 <i class="bx bx-chevrons-left"></i>
 مقالات
 </a>
@@ -260,7 +260,7 @@ Logged In as {{ user.username }}
 </a>
 </li>
 <li>
-<a href="contact.html">
+<a href="{% url 'aboutus' %}">
 <i class="bx bx-chevrons-left"></i>
 تماس با ما
 </a>
@@ -271,37 +271,15 @@ Logged In as {{ user.username }}
 <div class="col-lg-3 col-md-6">
 <div class="single-widget">
 <h3>آخرین مطالب</h3>
+
 <ul>
+{% for article in listof_articles %}
 <li>
-<a href="#">
+<a href="{% url 'viewarticle' article.id %}">
 <i class="bx bx-chevrons-left"></i>
-مدیریت فناوری
-</a>
+{{  article.title }}</a>
 </li>
-<li>
-<a href="#">
-<i class="bx bx-chevrons-left"></i>
-توسعه دهنده
-</a>
-</li>
-<li>
-<a href="#">
-<i class="bx bx-chevrons-left"></i>
-ویژگی
-</a>
-</li>
-<li>
-<a href="#">
-<i class="bx bx-chevrons-left"></i>
-طراحی رابط کاربری
-</a>
-</li>
-<li>
-<a href="#">
-<i class="bx bx-chevrons-left"></i>
-پشتیبانی
-</a>
-</li>
+{% endfor %}
 </ul>
 </div>
 </div>

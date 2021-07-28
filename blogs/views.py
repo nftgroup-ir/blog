@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from .forms import ArticleForm
 from .models import Article
 from django.utils import timezone
@@ -13,7 +14,15 @@ from .models import Category
 
 
 def categoriesBase(request):
-    return {'categories' : Category.objects.all()}
+    articles = Article.objects.order_by('-created')
+    listof_articles = []
+    x = 0
+    for article in articles:
+        if x <= 4:
+            listof_articles.append(article)
+            x += 1
+    return({'categories' : Category.objects.all(), 'listof_articles': listof_articles, 'article': article})
+
 
 
 def home(request):
@@ -99,8 +108,14 @@ def createarticle(request):
 
 def currentarticles(request):
     articles = Article.objects.all()
-    return render(request, 'blogs/currentarticles.html', {'articles':articles})
+    p = Paginator(articles, 3)
+    page_num = request.GET.get('page')
+    page =p.get_page(page_num)
+    return render(request, 'blogs/currentarticles.html', {'page':page, 'articles':articles})
 
+    # articles = Article.objects.all()
+    # p = Paginator(articles, 3)
+    # return render(request, 'blogs/currentarticles.html', {'articles':articles})
 
 def viewarticle(request, article_pk):
     article = get_object_or_404(Article, pk = article_pk)
