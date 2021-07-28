@@ -5465,3 +5465,6 @@ right: 0;
 	max-width: 1020px;
 	margin: auto
 }
+.single-featured img{
+	height: 300PX;
+}
