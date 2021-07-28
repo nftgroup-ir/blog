@@ -5,36 +5,43 @@
 
 Current Articles
 
-<h2>Fatemeh has written {{articles.count}} article {{ articles.countpluralize }}</h2>
-
+<h2>Fatemeh have written {{articles.count}} article {{ articles.countpluralize }}</h2>
+<section class="latest-project-area pb-70">
+<div class="container">
+<div class="section-title text-center">
+<h2> مقالات</h2>
+</div>
+<div class="row">
 {% for article in articles %}
-<li>
-        <a href="{% url 'viewarticle' article.id %}">
-        {{  article.title }}
-        </a>
-        <br>
-        {{ article.description|safe|truncatechars:100 }}
-        <br>
-        Time : {{ article.created }}
-        <br>
-        <img src="{{ Article.image.url }}" height="400">
-        <br>
-        updated : {{ article.updated }}
-        <br>
-        Writer : {{ article.user }}
-        <br>categories :
-
-                {% for article_category in article.category.all %}
+        $$$$$$$$$
+        <div class="col-lg-4 col-md-6">
+        <div class="single-featured">
+                <a href="{% url 'viewarticle' article.id %}">
+                <img src="{{ article.image.url }}" alt="Image">
+                </a>
+                <div class="featured-content">
+                        <ul>
+                                <li>
+                                <i class="bx bx-calendar"></i>
+                                {{ article.created }}
+                                </li>
+                        </ul>
+                        <a href="{% url 'viewarticle' article.id %}">
+                        <h3>{{  article.title }}</h3>
+                        </a>
+                        <p>{% for article_category in article.category.all %}
                        <td> {{ article_category.name }} </td>
-                {% endfor %}
-
-        <br>
-        <br>
-
-
-
-</li>
+                            {% endfor %}</p>
+                        <a href="{% url 'viewarticle' article.id %}" class="read-more">ادامه خواندن</a>
+                </div>
+        </div>
+</div>
 {% endfor %}
+</div>
+</div>
+</section>
+
 
 {% endblock %}
+
 
