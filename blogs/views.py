@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from .forms import ArticleForm
+from .forms import ArticleForm , MessageForm
 from .models import Article
 from django.utils import timezone
 from .models import Category
@@ -36,9 +36,15 @@ def home(request):
     return render(request, 'blogs/home.html', {'listof_articles':listof_articles, 'article':article})
 
 def aboutus(request):
-    return render(request, 'blogs/aboutus.html')
-
-
+    if request.method == 'GET':
+        return render(request, 'blogs/aboutus.html' , {'form': MessageForm()})
+    else:
+        try:
+            form = MessageForm(request.POST)
+            form.save()
+            return render(request, 'blogs/aboutus.html' , {'form': MessageForm(),'msg' : True})
+        except ValueError:
+            return render(request, 'blogs/aboutus.html')
 
 def signupuser(request):
     if request.method == 'GET' :
@@ -54,7 +60,6 @@ def signupuser(request):
                     return render(request, 'blogs/signupuser.html', {'form':UserCreationForm(), 'error':'The user name has already been taken'})
         else:
             return render(request, 'blogs/signupuser.html', {'form':UserCreationForm(), 'error':'passwords did not match'})
-
 
 def loginuser(request):
     if request.method == 'GET' :
@@ -107,7 +112,7 @@ def createarticle(request):
 
 
 def currentarticles(request):
-    articles = Article.objects.all()
+    articles = Article.objects.order_by('-created')
     p = Paginator(articles, 3)
     page_num = request.GET.get('page')
     page =p.get_page(page_num)
