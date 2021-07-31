@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from .forms import ArticleForm , MessageForm
+from .forms import ArticleForm , MessageForm, HiringForm
 from .models import Article
 from django.utils import timezone
 from .models import Category
@@ -80,20 +80,15 @@ def logoutuser(request):
 
 def hiringuser(request):
     if request.method == 'GET':
-        return render(request, 'blogs/hiringuser.html', {'form': UserCreationForm()})
-    else:
-        if request.POST['password1'] == request.POST['password2']:
-            try:
-                user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
-                user.save()
-                login(request, user)
-                return redirect('home')
-            except IntegrityError:
-                return render(request, 'blogs/hiringuser.html',
-                                {'form': UserCreationForm(), 'error': 'The user name has already been taken'})
-        else:
-            return render(request, 'blogs/hiringuser.html',
-                            {'form': UserCreationForm(), 'error': 'passwords did not match'})
+        return render(request, 'blogs/hiringuser.html', {'form': HiringForm()})
+    elif request.method == 'POST':
+        try:
+            form = HiringForm(request.POST, request.FILES)
+            form.save()
+            return render(request, 'blogs/hiringuser.html',{'form': HiringForm(), 'msg' : True})
+        except IntegrityError:
+            return render(request, 'blogs/hiringuser.html',{'form': HiringForm(), 'error': 'اشتباهی رخ داده است'})
+
 
 @login_required
 def createarticle(request):

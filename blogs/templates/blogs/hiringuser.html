@@ -3,12 +3,14 @@
 
 {% block content %}
 <h1>Hiring</h1>
-
+{% if msg %}
+<h3>فرمت ارسال شد</h3>
+{% endif %}
 <h2>{{ error }}</h2>
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
   {% csrf_token %}
  {{ form.as_p }}
-<button type="submit">Sign Up</button>
+<button type="submit">Send</button>
 </form>
 
 {% endblock %}

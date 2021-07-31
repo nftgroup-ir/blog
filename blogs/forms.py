@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Article, Category , Message
+from .models import Article, Category , Message, Hiring
 
 
 
@@ -60,3 +60,7 @@ class MessageForm(ModelForm):
          }
     ))
 
+class HiringForm(ModelForm):
+     class Meta:
+         model = Hiring
+         fields = [ 'name', 'resumefile' ]
