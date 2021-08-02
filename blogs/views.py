@@ -10,7 +10,6 @@ from .forms import ArticleForm , MessageForm
 from .models import Article
 from django.utils import timezone
 from .models import Category
-import requests
 
 
 
@@ -24,11 +23,7 @@ def categoriesBase(request):
             x += 1
     return({'categories' : Category.objects.all(), 'listof_articles': listof_articles, 'article': article})
 
-def get_price():
-    url = "https://api.nomics.com/v1/currencies/ticker?key=041e0dbf4707ba03ca9759d706dc36299d10515d&ids=BTC,ETH&interval=1h"
-    my_api_data = requests.get(url)
-    bitcoin_price = (my_api_data.json()[0]['price'])
-    ethereum_price = (my_api_data.json()[1]['price'])
+
 
 def home(request):
     articles = Article.objects.order_by('-created')
