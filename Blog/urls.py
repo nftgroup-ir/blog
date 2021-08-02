@@ -39,5 +39,6 @@ urlpatterns = [
     path('articles/<str:article_pk>', views.viewcategory_article, name='viewcategory_article'),
 
 ]
+handler404 = 'blogs.views.error_404'
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
