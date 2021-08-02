@@ -9,31 +9,31 @@
         <meta name="description" content="Linka - Modern Blog & Magazine HTML Template">
         <meta name="author" content="Barat Hadian">
 
-<link rel="stylesheet" href="http://localhost:8000/static/blogs/assets/css/bootstrap.rtl.min.css">
+<link rel="stylesheet" href="{{url}}/static/blogs/assets/css/bootstrap.rtl.min.css">
 
-<link rel="stylesheet" href="http://localhost:8000/static/blogs/assets/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="{{url}}/static/blogs/assets/css/owl.theme.default.min.css">
 
-<link rel="stylesheet" href="http://localhost:8000/static/blogs/assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="{{url}}/static/blogs/assets/css/owl.carousel.min.css">
 
-<link rel="stylesheet" href="http://localhost:8000/static/blogs/assets/css/magnific-popup.min.css">
+<link rel="stylesheet" href="{{url}}/static/blogs/assets/css/magnific-popup.min.css">
 
-<link rel="stylesheet" href="http://localhost:8000/static/blogs/assets/css/animate.min.css">
+<link rel="stylesheet" href="{{url}}/static/blogs/assets/css/animate.min.css">
 
-<link rel="stylesheet" href="http://localhost:8000/static/blogs/assets/css/boxicons.min.css">
+<link rel="stylesheet" href="{{url}}/static/blogs/assets/css/boxicons.min.css">
 
-<link rel="stylesheet" href="http://localhost:8000/static/blogs/assets/css/flaticon.css">
+<link rel="stylesheet" href="{{url}}/static/blogs/assets/css/flaticon.css">
 
-<link rel="stylesheet" href="http://localhost:8000/static/blogs/assets/css/meanmenu.min.css">
+<link rel="stylesheet" href="{{url}}/static/blogs/assets/css/meanmenu.min.css">
 
-<link rel="stylesheet" href="http://localhost:8000/static/blogs/assets/css/nice-select.min.css">
+<link rel="stylesheet" href="{{url}}/static/blogs/assets/css/nice-select.min.css">
 
-<link rel="stylesheet" href="http://localhost:8000/static/blogs/assets/css/style.css">
+<link rel="stylesheet" href="{{url}}/static/blogs/assets/css/style.css">
 
-<link rel="stylesheet" href="http://localhost:8000/static/blogs/assets/css/responsive.css">
+<link rel="stylesheet" href="{{url}}/static/blogs/assets/css/responsive.css">
 
-<link rel="stylesheet" href="http://localhost:8000/static/blogs/assets/css/rtl.css">
+<link rel="stylesheet" href="{{url}}/static/blogs/assets/css/rtl.css">
 
-<link rel="icon" type="image/png" href="http://localhost:8000/static/blogs/assets/img/favicon.png">
+<link rel="icon" type="image/png" href="{{url}}/static/blogs/assets/img/favicon.png">
 
 <title>tokyn </title>
 </head>
@@ -185,7 +185,7 @@ Logged In as {{ user.username }}
 <div class="col-lg-3 col-md-6">
 <div class="single-widget">
 <a href="index.html">
-<img src="assets/img/small-logo.png" alt="Image">
+<img src="{{url}}assets/img/small-logo.png" alt="Image">
 </a>
 <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد.</p>
 <div class="social-area">
@@ -224,13 +224,13 @@ Logged In as {{ user.username }}
 <h3>فهرست</h3>
 <ul>
 <li>
-<a href="author.html">
-<i class="bx bx-chevrons-left"></i>
-آموزش
-</a>
+<!--<a href="{% url 'viewcategories' %}">-->
+<!--<i class="bx bx-chevrons-left"></i>-->
+<!--آموزش-->
+<!--</a>-->
 </li>
 <li>
-<a href="gallery.html">
+<a href="{% url 'currentarticles' %}">
 <i class="bx bx-chevrons-left"></i>
 مقالات
 </a>
@@ -260,7 +260,7 @@ Logged In as {{ user.username }}
 </a>
 </li>
 <li>
-<a href="contact.html">
+<a href="{% url 'aboutus' %}">
 <i class="bx bx-chevrons-left"></i>
 تماس با ما
 </a>
@@ -271,37 +271,15 @@ Logged In as {{ user.username }}
 <div class="col-lg-3 col-md-6">
 <div class="single-widget">
 <h3>آخرین مطالب</h3>
+
 <ul>
+{% for article in listof_articles %}
 <li>
-<a href="#">
+<a href="{% url 'viewarticle' article.id %}">
 <i class="bx bx-chevrons-left"></i>
-مدیریت فناوری
-</a>
+{{  article.title }}</a>
 </li>
-<li>
-<a href="#">
-<i class="bx bx-chevrons-left"></i>
-توسعه دهنده
-</a>
-</li>
-<li>
-<a href="#">
-<i class="bx bx-chevrons-left"></i>
-ویژگی
-</a>
-</li>
-<li>
-<a href="#">
-<i class="bx bx-chevrons-left"></i>
-طراحی رابط کاربری
-</a>
-</li>
-<li>
-<a href="#">
-<i class="bx bx-chevrons-left"></i>
-پشتیبانی
-</a>
-</li>
+{% endfor %}
 </ul>
 </div>
 </div>
@@ -350,27 +328,27 @@ Logged In as {{ user.username }}
 </div>
 
 
-<script src="http://tokyn.ir/static/blogs/assets/js/jquery.min.js"></script>
+<script src="{{url}}/static/blogs/assets/js/jquery.min.js"></script>
 
-<script src="http://tokyn.ir/static/blogs/assets/js/bootstrap.bundle.min.js"></script>
+<script src="{{url}}/static/blogs/assets/js/bootstrap.bundle.min.js"></script>
 
-<script src="http://tokyn.ir/static/blogs/assets/js/meanmenu.min.js"></script>
+<script src="{{url}}/static/blogs/assets/js/meanmenu.min.js"></script>
 
-<script src="http://tokyn.ir/static/blogs/assets/js/wow.min.js"></script>
+<script src="{{url}}/static/blogs/assets/js/wow.min.js"></script>
 
-<script src="http://tokyn.ir/static/blogs/assets/js/owl.carousel.min.js"></script>
+<script src="{{url}}/static/blogs/assets/js/owl.carousel.min.js"></script>
 
-<script src="http://tokyn.ir/static/blogs/assets/js/magnific-popup.min.js"></script>
+<script src="{{url}}/static/blogs/assets/js/magnific-popup.min.js"></script>
 
-<script src="http://tokyn.ir/static/blogs/assets/js/nice-select.min.js"></script>
+<script src="{{url}}/static/blogs/assets/js/nice-select.min.js"></script>
 
-<script src="http://tokyn.ir/static/blogs/assets/js/form-validator.min.js"></script>
+<script src="{{url}}/static/blogs/assets/js/form-validator.min.js"></script>
 
-<script src="http://tokyn.ir/static/blogs/assets/js/contact-form-script.js"></script>
+<script src="{{url}}/static/blogs/assets/js/contact-form-script.js"></script>
 
-<script src="http://tokyn.ir/static/blogs/assets/js/ajaxchimp.min.js"></script>
+<script src="{{url}}/static/blogs/assets/js/ajaxchimp.min.js"></script>
 
-<script src="http://tokyn.ir/static/blogs/assets/js/custom.js"></script>
+<script src="{{url}}/static/blogs/assets/js/custom.js"></script>
 </body>
 </html>
 

@@ -3,17 +3,15 @@
 
 {% block content %}
 
-Current Articles
 
-<h2>Fatemeh have written {{articles.count}} article {{ articles.countpluralize }}</h2>
+<h2>page number:{{ page.number }}</h2>
 <section class="latest-project-area pb-70">
 <div class="container">
 <div class="section-title text-center">
 <h2> مقالات</h2>
 </div>
 <div class="row">
-{% for article in articles %}
-        $$$$$$$$$
+{% for article in page.object_list %}
         <div class="col-lg-4 col-md-6">
         <div class="single-featured">
                 <a href="{% url 'viewarticle' article.id %}">
@@ -33,10 +31,20 @@ Current Articles
                        <td> {{ article_category.name }} </td>
                             {% endfor %}</p>
                         <a href="{% url 'viewarticle' article.id %}" class="read-more">ادامه خواندن</a>
+
                 </div>
         </div>
 </div>
 {% endfor %}
+        <div class="page-links">
+                {% if page.has_previous %}
+                <a href="{% url 'currentarticles' %}?page={{page.previous_page_number }}">Previous</a>
+                {% endif %}
+                {% if page.has_next %}
+                <a href="{% url 'currentarticles' %}?page={{  page.next_page_number }}">Next </a>
+                {% endif %}
+
+                        </div>
 </div>
 </div>
 </section>

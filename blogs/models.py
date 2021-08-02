@@ -36,12 +36,21 @@ class Article(models.Model):
         return reverse('home')
 '''
 
+class Message(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    phonenumber = models.CharField(max_length=200)
+    subject = models.CharField(max_length=300)
+    message_text = models.TextField(max_length=1000)
+
+    def __str__(self):
+        return self.name
+
 
 class Hiring(models.Model):
     name = models.CharField(max_length=200)
     birthday = models.DateField(null=True, blank=True)
     about = models.TextField(max_length=1000)
-
     # resumefile =
 
     def __str__(self):

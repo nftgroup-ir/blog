@@ -5,15 +5,34 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from .forms import ArticleForm
+from django.core.paginator import Paginator
+from .forms import ArticleForm , MessageForm
 from .models import Article
 from django.utils import timezone
 from .models import Category
+# import requests
+
+
+def get_price():
+    url = "https://api.nomics.com/v1/currencies/ticker?key=041e0dbf4707ba03ca9759d706dc36299d10515d&ids=BTC,ETH&interval=1h"
+    my_api_data = requests.get(url)
+    bitcoin_price = (my_api_data.json()[0]['price'])
+    ethereum_price = (my_api_data.json()[1]['price'])
+    prices = {'bitcoin_price':bitcoin_price,'ethereum_price': ethereum_price}
+    return prices
 
 
 
 def categoriesBase(request):
-    return {'categories' : Category.objects.all()}
+    articles = Article.objects.order_by('-created')
+    listof_articles = []
+    x = 0
+    for article in articles:
+        if x <= 4:
+            listof_articles.append(article)
+            x += 1
+    return({'categories' : Category.objects.all(), 'listof_articles': listof_articles, 'article': article})
+
 
 
 def home(request):
@@ -27,9 +46,15 @@ def home(request):
     return render(request, 'blogs/home.html', {'listof_articles':listof_articles, 'article':article})
 
 def aboutus(request):
-    return render(request, 'blogs/aboutus.html')
-
-
+    if request.method == 'GET':
+        return render(request, 'blogs/aboutus.html' , {'form': MessageForm()})
+    else:
+        try:
+            form = MessageForm(request.POST)
+            form.save()
+            return render(request, 'blogs/aboutus.html' , {'form': MessageForm(),'msg' : True})
+        except ValueError:
+            return render(request, 'blogs/aboutus.html')
 
 def signupuser(request):
     if request.method == 'GET' :
@@ -45,7 +70,6 @@ def signupuser(request):
                     return render(request, 'blogs/signupuser.html', {'form':UserCreationForm(), 'error':'The user name has already been taken'})
         else:
             return render(request, 'blogs/signupuser.html', {'form':UserCreationForm(), 'error':'passwords did not match'})
-
 
 def loginuser(request):
     if request.method == 'GET' :
@@ -98,9 +122,15 @@ def createarticle(request):
 
 
 def currentarticles(request):
-    articles = Article.objects.all()
-    return render(request, 'blogs/currentarticles.html', {'articles':articles})
+    articles = Article.objects.order_by('-created')
+    p = Paginator(articles, 3)
+    page_num = request.GET.get('page')
+    page =p.get_page(page_num)
+    return render(request, 'blogs/currentarticles.html', {'page':page, 'articles':articles})
 
+    # articles = Article.objects.all()
+    # p = Paginator(articles, 3)
+    # return render(request, 'blogs/currentarticles.html', {'articles':articles})
 
 def viewarticle(request, article_pk):
     article = get_object_or_404(Article, pk = article_pk)
@@ -142,7 +172,7 @@ def categoryarticles(request,category_name):
             for cat in article.category.all():
                 if category_name == cat.name:
                     mylist.append(article)
-        return render(request, 'blogs/categoryarticles.html', {'articles':articles, 'mylist' : mylist , 'a':'مطلبی وجود ندارد' })
+        return render(request, 'blogs/categoryarticles.html', {'articles':articles, 'mylist' : mylist  })
 
 def viewcategory_article(request, article_pk):     #SEE FULL ARTICLE OF A CATEGORY
     article = get_object_or_404(Article, pk=article_pk)
