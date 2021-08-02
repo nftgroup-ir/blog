@@ -10,6 +10,16 @@ from .forms import ArticleForm , MessageForm
 from .models import Article
 from django.utils import timezone
 from .models import Category
+import requests
+
+
+def get_price():
+    url = "https://api.nomics.com/v1/currencies/ticker?key=041e0dbf4707ba03ca9759d706dc36299d10515d&ids=BTC,ETH&interval=1h"
+    my_api_data = requests.get(url)
+    bitcoin_price = (my_api_data.json()[0]['price'])
+    ethereum_price = (my_api_data.json()[1]['price'])
+    prices = {'bitcoin_price':bitcoin_price,'ethereum_price': ethereum_price}
+    return prices
 
 
 
@@ -162,7 +172,7 @@ def categoryarticles(request,category_name):
             for cat in article.category.all():
                 if category_name == cat.name:
                     mylist.append(article)
-        return render(request, 'blogs/categoryarticles.html', {'articles':articles, 'mylist' : mylist , 'a':'مطلبی وجود ندارد' })
+        return render(request, 'blogs/categoryarticles.html', {'articles':articles, 'mylist' : mylist  })
 
 def viewcategory_article(request, article_pk):     #SEE FULL ARTICLE OF A CATEGORY
     article = get_object_or_404(Article, pk=article_pk)
