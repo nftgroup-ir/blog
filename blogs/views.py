@@ -10,7 +10,7 @@ from .forms import ArticleForm , MessageForm, HiringForm
 from .models import Article
 from django.utils import timezone
 from .models import Category
-# import requests
+import requests
 
 
 def get_price():
@@ -18,7 +18,7 @@ def get_price():
     my_api_data = requests.get(url)
     bitcoin_price = (my_api_data.json()[0]['price'])
     ethereum_price = (my_api_data.json()[1]['price'])
-    prices = {'bitcoin_price':bitcoin_price,'ethereum_price': ethereum_price}
+    prices = {'bitcoin':bitcoin_price,'ethereum': ethereum_price}
     return prices
 
 
@@ -43,7 +43,8 @@ def home(request):
         if x<=3:
             listof_articles.append(article)
             x+=1
-    return render(request, 'blogs/home.html', {'listof_articles':listof_articles, 'article':article})
+    get_price()
+    return render(request, 'blogs/home.html', {'listof_articles':listof_articles, 'article':article , 'price' : get_price() })
 
 def aboutus(request):
     if request.method == 'GET':
