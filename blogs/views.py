@@ -10,7 +10,7 @@ from .forms import ArticleForm , MessageForm
 from .models import Article
 from django.utils import timezone
 from .models import Category
-import requests
+# import requests
 
 
 def get_price():
