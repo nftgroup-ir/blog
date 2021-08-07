@@ -6,7 +6,7 @@ create Article
 
 {{ error }}
 
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" id="editor">
   {% csrf_token %}
 {{ form.as_p }}
 <button type="submit">Create</button>

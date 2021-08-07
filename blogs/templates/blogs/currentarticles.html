@@ -14,9 +14,11 @@
 {% for article in page.object_list %}
         <div class="col-lg-4 col-md-6">
         <div class="single-featured">
+                 {% if article.image %}
                 <a href="{% url 'viewarticle' article.id %}">
                 <img src="{{ article.image.url }}" alt="Image">
                 </a>
+                {% endif %}
                 <div class="featured-content">
                         <ul>
                                 <li>
