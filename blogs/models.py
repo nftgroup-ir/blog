@@ -17,12 +17,12 @@ class Category(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=200)
-    description = models.TextField(max_length=1000, blank=True)
+    description = models.TextField(max_length=1000)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ManyToManyField(Category)
-    image = models.ImageField(upload_to='blogs/images/', null=True, blank=True)
+    image = models.ImageField(upload_to='blogs/images/', null=True)
     #updater = models.Charfield
     #dateupdated = models.DateTimeField(null=True, blank=True)
 
