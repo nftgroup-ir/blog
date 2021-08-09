@@ -22,8 +22,11 @@ from blogs import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name= "home"),
+<<<<<<< Updated upstream
     path('aboutus', views.aboutus, name= "aboutus"),
     path('ckeditor', include('ckeditor_uploader.urls')),
+=======
+>>>>>>> Stashed changes
     # Auth
     path('signup/', views.signupuser, name= 'signupuser'),
     path('login/', views.loginuser, name= 'loginuser'),
