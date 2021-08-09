@@ -49,9 +49,7 @@ class Message(models.Model):
 
 class Hiring(models.Model):
     name = models.CharField(max_length=200)
-    birthday = models.DateField(null=True, blank=True)
-    about = models.TextField(max_length=1000)
-    # resumefile =
+    resumefile = models.FileField(upload_to='blogs/documents/', default=False)
 
     def __str__(self):
-        return self.title
+        return self.name
