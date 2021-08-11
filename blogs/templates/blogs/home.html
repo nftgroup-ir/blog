@@ -8,9 +8,7 @@
 <div class="container-fluid">
 <div class="row">
 <div class="col-lg-5 plr-5">
-    {% if listof_articles.0.image %}
 <div class="single-main-blog-item-two bg-1" style="background-image: url({{ listof_articles.0.image.url }})";>
-    {% endif %}
 <div class="main-blog-content">
 <a href="{% url 'viewarticle' listof_articles.0.id %}">
 <h3>{{listof_articles.0.title}}</h3>
@@ -29,9 +27,7 @@
 <div class="col-lg-2">
 <div class="row">
 <div class="col-lg-12 col-md-6 plr-5">
-    {% if listof_articles.1.image %}
 <div class="single-main-blog-item-two middle bg-2 mb-8" style="height:200px;background-image: url({{ listof_articles.1.image.url }})";>
-    {% endif %}
 <div class="main-blog-content">
 <a href="{% url 'viewarticle' listof_articles.1.id %}">
 <h3>{{listof_articles.1.title}}</h3>
@@ -48,9 +44,7 @@
 </div>
 </div>
 <div class="col-lg-12 col-md-6 plr-5">
-    {% if listof_articles.2.image %}
 <div class="single-main-blog-item-two middle" style="height:200px;background-image: url({{ listof_articles.2.image.url }})";>
-    {% endif %}
 <div class="main-blog-content">
 <a href="{% url 'viewarticle' listof_articles.2.id %}">
 <h3>{{listof_articles.2.title}}</h3>
@@ -69,9 +63,7 @@
 </div>
 </div>
 <div class="col-lg-5 plr-5">
-    {% if listof_articles.3.image %}
 <div class="single-main-blog-item-two bg-4" style="background-image: url({{ listof_articles.3.image.url }})";>
-    {% endif %}
 <div class="main-blog-content">
 <a href="{% url 'viewarticle' listof_articles.3.id %}">
 <h3>{{listof_articles.3.title}}</h3>
@@ -89,48 +81,6 @@
 </div>
 </div>
 </div>
-        <h5>the price of bitcoin is: {{price.bitcoin}} and the price of ethereum is: {{price.ethereum}}</h5>
-<div class="container">
-      <div class="row">
-              <div class="col-sm-4">
-          <div class="card arz">
-            <div class="arz-content">
-              <img
-                src="/static/blogs/assets/img/1200px-Bitcoin.svg.png"
-                alt="logo"
-                class="card-img-top"
-              />
-              <div class="card-body">
-                <h3 class="card-title">Bitcoin</h3>
-                <p class="card-text smN">(BTC)</p>
-                <p class="card-text pr">${{price.ethereum}}</p>
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card arz">
-            <div class="arz-content">
-              <img
-                src="/static/blogs/assets/img/2.png"
-                alt="logo"
-                class="card-img-top"
-              />
-              <div class="card-body">
-                <h3 class="card-title">Bitcoin</h3>
-                <p class="card-text smN">(BTC)</p>
-                <p class="card-text pr">${{price.bitcoin}}</p>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
 </section>
 
 
@@ -145,11 +95,9 @@
 {% for article in listof_articles %}
 <div class="col-lg-4 col-md-6">
         <div class="single-featured">
-                {% if article.image %}
                 <a href="{% url 'viewarticle' article.id %}">
                 <img src="{{ article.image.url }}" alt="Image">
                 </a>
-                {% endif %}
                 <div class="featured-content">
                         <ul>
                                 <li>
