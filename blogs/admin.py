@@ -4,6 +4,7 @@ from .models import Category
 from .models import Hiring
 from .models import Message
 
+
 #class ArticleAdmin(admin.ModelAdmin):
    # readonly_fields = ('created',)
 
