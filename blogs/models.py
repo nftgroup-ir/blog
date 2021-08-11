@@ -21,8 +21,6 @@ class Article(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(max_length=1000)
     description = RichTextUploadingField()
-    description = models.TextField(max_length=1000)
-    description = RichTextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
