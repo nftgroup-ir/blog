@@ -10,7 +10,21 @@ from .forms import ArticleForm , MessageForm, HiringForm
 from .models import Article
 from django.utils import timezone
 from .models import Category
-# import requests
+import requests
+#from django.shortcuts import render_to_response
+from django.template import RequestContext
+
+
+def error_404(request, exception):
+    data = {}
+    return render(request, 'blogs/404.html', data)
+
+
+def handler500(request, *args, **argv):
+    response = render('500.html', {},context_instance=RequestContext(request))
+    response.status_code = 500
+    return response
+
 
 
 def get_price():
@@ -18,7 +32,7 @@ def get_price():
     my_api_data = requests.get(url)
     bitcoin_price = (my_api_data.json()[0]['price'])
     ethereum_price = (my_api_data.json()[1]['price'])
-    prices = {'bitcoin_price':bitcoin_price,'ethereum_price': ethereum_price}
+    prices = {'bitcoin':bitcoin_price,'ethereum': ethereum_price}
     return prices
 
 
@@ -43,7 +57,7 @@ def home(request):
         if x<=3:
             listof_articles.append(article)
             x+=1
-    return render(request, 'blogs/home.html', {'listof_articles':listof_articles, 'article':article})
+    return render(request, 'blogs/home.html', {'listof_articles':listof_articles, 'article':article , 'price' : get_price() })
 
 def aboutus(request):
     if request.method == 'GET':
@@ -134,7 +148,7 @@ def viewarticle(request, article_pk):
 
 @login_required
 def updatearticle(request, article_pk):
-    article = get_object_or_404(Article, pk = article_pk, user=request.user)
+    article = get_object_or_404(Article, pk = article_pk)
     if request.method == 'GET':
         form = ArticleForm(instance=article)
         return render(request, 'blogs/updatearticle.html', {'article': article, 'form':form })
