@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name= "home"),
     path('aboutus', views.aboutus, name= "aboutus"),
+    path('ckeditor', include('ckeditor_uploader.urls')),
     # Auth
     path('signup/', views.signupuser, name= 'signupuser'),
     path('login/', views.loginuser, name= 'loginuser'),
