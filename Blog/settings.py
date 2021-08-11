@@ -53,22 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Blog.urls'
-# CKEDITOR_CONFIGS = {
-#    'default': {
-#        'toolbar_Full': [
-#             ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'SpellChecker', 'Undo', 'Redo'],
-#             ['Link', 'Unlink', 'Anchor'],
-#             ['Image', 'Flash', 'Table', 'HorizontalRule'],
-#             ['TextColor', 'BGColor'],
-#             ['Smiley', 'SpecialChar'], ['Source'],
-#             ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-#             ['NumberedList','BulletedList'],
-#             ['Indent','Outdent'],
-#             ['Maximize'],
-#         ],
-#         'extraPlugins': 'justify,liststyle,indent',
-#    },
-# }
+
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
@@ -205,11 +190,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
 
 
-# CKEDITOR_UPLOAD_SLUGIFY_FILENAME = False
-# CKEDITOR_JQUERY_URL = 'http://libs.baidu.com/jquery/2.0.3/jquery.min.js'
-# CKEDITOR_IMAGE_BACKEND = "pillow"
-# CKEDITOR_UPLOAD_SLUGIFY_FILENAME = True
-# CKEDITOR_UPLOAD_PATH = '/media/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
