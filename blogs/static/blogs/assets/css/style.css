@@ -1,4 +1,4 @@
-@import "Vazir-Regular-FD.css";
+ @import "Vazir-Regular-FD.css";
 @import "W_tanin.css";
 body {
 	padding: 0;
@@ -5471,4 +5471,50 @@ right: 0;
 }
 .single-featured img{
 	height: 300PX;
+}
+.arz{
+    width: 300px;
+	margin: auto;
+    text-align: center;
+    justify-content: center;
+    height: 300px;
+    border-radius: 30px;
+}
+.arz img{
+    width: 100px;
+    text-align: center;
+    display: flex;
+    margin: auto;
+    transform: rotateX(0);
+    transition: all 0.5s;
+}
+.arz h3 {
+    transition-property: font-size;
+    transition-duration: 0.5s;
+    font-size: 20px ;
+
+}
+.smN {
+    font-size: 15px;
+}
+.pr{
+    font-size: 20px;
+}
+.arz:hover h3{
+    font-size: 30px;
+}
+.arz:hover img {
+    transform: rotate(360deg);
+}
+
+.login { 
+	margin-top: 10px;
+	text-align: center;
+}
+.login a{
+	color: white;
+}
+.CCC {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
