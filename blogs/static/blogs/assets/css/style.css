@@ -5474,6 +5474,7 @@ right: 0;
 }
 .arz{
     width: 300px;
+	margin: auto;
     text-align: center;
     justify-content: center;
     height: 300px;
@@ -5506,3 +5507,14 @@ right: 0;
     transform: rotate(360deg);
 }
 
+.login { 
+	margin-top: 10px;
+	text-align: center;
+}
+.login a{
+	color: white;
+}
+.CCC {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
