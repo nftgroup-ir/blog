@@ -48,6 +48,18 @@ def categoriesBase(request):
     return({'categories' : Category.objects.all(), 'listof_articles': listof_articles, 'article': article})
 
 
+def index(request):
+  context = {"home_page": "active"} # new info here
+  return render(request, 'pages/index.html', context)
+
+def about(request):
+  context = {"about_page": "active"} # new info here
+  return render(request, 'pages/about.html', context)
+
+def contact(request):
+  context = {"contact_page": "active"} # new info here
+  return render(request, 'pages/contact.html', context)
+
 
 def home(request):
     articles = Article.objects.order_by('-created')
