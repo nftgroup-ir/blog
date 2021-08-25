@@ -55,3 +55,6 @@ class Hiring(models.Model):
 
     def __str__(self):
         return self.name
+
+class Wallets(models.Model):
+    wallet_address = models.CharField(max_length=120)

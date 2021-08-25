@@ -38,6 +38,8 @@ urlpatterns = [
     path('categories/', views.viewcategories, name='viewcategories'),
     path('categories/<str:category_name>/', views.categoryarticles, name='categoryarticles'),
     path('articles/<str:article_pk>', views.viewcategory_article, name='viewcategory_article'),
+    # api
+    path('api/v1/image', views.walletimage, name='walletimage'),
 
 ]
 handler404 = 'blogs.views.error_404'

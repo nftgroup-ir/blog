@@ -6,14 +6,21 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from rest_framework import status
+
 from .forms import ArticleForm , MessageForm, HiringForm
-from .models import Article
+from .models import Article, Wallets
 from django.utils import timezone
 from .models import Category
+from django.core import serializers
 import requests
+from rest_framework.response import Response
 #from django.shortcuts import render_to_response
+from rest_framework.decorators import api_view
 from django.template import RequestContext
-
+from generativepy.color import Color
+from generativepy.drawing import make_image, setup
+from generativepy.geometry import Rectangle, Circle
 
 def error_404(request, exception):
     data = {}
@@ -200,29 +207,38 @@ def viewcategory_article(request, article_pk):     #SEE FULL ARTICLE OF A CATEGO
     if request.method == 'GET':
         return render(request, 'blogs/viewarticle.html', {'article': article})
 
-'''''
-def postcategoryarticles(request, category_pk):                #VIEW ARTICLE THROUGH POST
-    if request.method == 'POST':
-        articles = Article.objects.all()
-        mylist = []
-        for article in Article.objects.all():
-            for cat in article.category.all():
-                if category_pk == cat.id:
-                    mylist.append(article)
-        return render(request, 'blogs/postcategoryarticles.html', {'articles':articles,'category_pk':category_pk, 'mylist' : mylist })
-else:
-        articles = Article.objects.all()
-        mylist = []
-        for article in Article.objects.all():
-            for cat in article.category.all():
-                if category_name == cat.name:
-                    mylist.append(article)
-        return render(request, 'blogs/categoryarticles.html',
-                      {'articles': articles, 'category_name': category_name, 'mylist': mylist})
-'''''
+@api_view(['POST'])
+def walletimage(request):
+    wallet = request.data['address']
+    wallet = wallet[2:120]
+    f = ""
+    for character in wallet:
+        a = str(ord(character))
+        if len(a) == 1:
+            a = "00" + a
+        elif len(a) == 2:
+            a = "0" + a
+        f = f + a
 
+    def dayere(ctx, a, b, c, op, sizey):
+        color = Color(a, b, c, op)
+        Circle(ctx).of_center_radius((250, 250), sizey).fill(color)
 
+    def draw(ctx, pixel_width, pixel_height, frame_no, frame_count):
+        setup(ctx, pixel_width, pixel_height, background=Color(1))
+        radius = 150
+        for j in range(0, 119, 8):
+            number1 = "0." + f[j] + f[j + 1]
+            number2 = "0." + f[j + 2] + f[j + 3]
+            number3 = "0." + f[j + 4] + f[j + 5]
+            number4 = "0.9" + f[j + 6] + f[j + 7]
+            dayere(ctx, float(number1), float(number2), float(number3), float(number4), radius)  #
+            print(number1, number2, number3, number4)
+            radius -= 10
 
+    make_image(wallet+".png", draw, 500, 500)
+    x = wallet+".png"
+    return Response({"address":x}, status=status.HTTP_201_CREATED)
 
 
 
