@@ -7,7 +7,6 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from rest_framework import status
-
 from .forms import ArticleForm , MessageForm, HiringForm
 from .models import Article, Wallets
 from django.utils import timezone
@@ -52,7 +51,7 @@ def categoriesBase(request):
         if x <= 4:
             listof_articles.append(article)
             x += 1
-    return({'categories' : Category.objects.all(), 'listof_articles': listof_articles, 'article': article})
+    return({'categories' : Category.objects.all(), 'listof_articles': listof_articles, 'article': "s"})
 
 
 def index(request):
