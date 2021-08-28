@@ -46,12 +46,15 @@ def get_price():
 def categoriesBase(request):
     articles = Article.objects.order_by('-created')
     listof_articles = []
-    x = 0
-    for article in articles:
-        if x <= 4:
-            listof_articles.append(article)
-            x += 1
-    return({'categories' : Category.objects.all(), 'listof_articles': listof_articles, 'article': "s"})
+    if articles == []:
+        return({'categories' : Category.objects.all(), 'listof_articles': listof_articles, 'article': "s"})
+    else:
+        x = 0
+        for article in articles:
+            if x <= 4:
+                listof_articles.append(article)
+                x += 1
+        return({'categories' : Category.objects.all(), 'listof_articles': listof_articles, 'article': "s"})
 
 
 def index(request):
