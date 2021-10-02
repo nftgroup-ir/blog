@@ -7,6 +7,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from rest_framework import status
+
 from .forms import ArticleForm , MessageForm, HiringForm
 from .models import Article, Wallets
 from django.utils import timezone
@@ -46,15 +47,12 @@ def get_price():
 def categoriesBase(request):
     articles = Article.objects.order_by('-created')
     listof_articles = []
-    if articles == []:
-        return({'categories' : Category.objects.all(), 'listof_articles': listof_articles, 'article': "s"})
-    else:
-        x = 0
-        for article in articles:
-            if x <= 4:
-                listof_articles.append(article)
-                x += 1
-        return({'categories' : Category.objects.all(), 'listof_articles': listof_articles, 'article': "s"})
+    x = 0
+    for article in articles:
+        if x <= 4:
+            listof_articles.append(article)
+            x += 1
+    return({'categories' : Category.objects.all(), 'listof_articles': listof_articles, 'article': article})
 
 
 def index(request):
